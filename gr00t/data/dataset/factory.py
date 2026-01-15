@@ -43,6 +43,7 @@ class DatasetFactory:
                     if torch.distributed.get_rank() == 0:
                         generate_stats(dataset_path)
                         generate_rel_stats(dataset_path, EmbodimentTag(embodiment_tag))
+                    torch.distributed.barrier()
                 else:
                     generate_stats(dataset_path)
                     generate_rel_stats(dataset_path, EmbodimentTag(embodiment_tag))
